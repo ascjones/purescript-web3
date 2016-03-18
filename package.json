@@ -1,0 +1,29 @@
+{
+  "name": "purescript-web3",
+  "version": "0.0.1",
+  "description": "Purescript bindings for the Ethereum web3.js library",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "web3": "^0.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ascjones/purescript-web3.git"
+  },
+  "keywords": [
+    "ethereum"
+  ],
+  "author": "Andrew Jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ascjones/purescript-web3/issues"
+  },
+  "homepage": "https://github.com/ascjones/purescript-web3#readme"
+}
