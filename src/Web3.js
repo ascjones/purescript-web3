@@ -14,3 +14,17 @@ exports.isConnected = function(web3) {
     return web3.isConnected;
   };
 };
+
+exports.setProvider = function(web3) {
+  return function(provider) {
+    return funtion() {
+      return web3.setProvider(provider);
+    }
+  };
+};
+
+exports.currentProvider = function(web3) {
+  return funtion() {
+    return web3.currentProvider;
+  }
+};
