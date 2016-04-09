@@ -27,4 +27,4 @@ main = runTest do
     v <- liftEff' $ w3 >>= version
     case _.api <$> v of
       Left err -> failure $ show err
-      Right api -> Assert.equal api "0.3.0"
+      Right api -> Assert.equal "0.15.3" api
