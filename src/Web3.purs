@@ -21,7 +21,9 @@ foreign import data Provider :: *
 
 foreign import data ETHEREUM :: !
 
-foreign import createWeb3 :: forall eff. Provider -> Eff (eth :: ETHEREUM | eff) Web3
+foreign import createWeb3 :: forall eff. Unit -> Eff (eth :: ETHEREUM | eff) Web3
 foreign import version :: forall eff. Web3 -> Eff (eth :: ETHEREUM | eff) Version
 foreign import isConnected :: forall eff. Web3 -> Eff (eth :: ETHEREUM | eff) Boolean
-foreign import setProvider :: forall eff. Web3 -> Provider -> Eff (eth :: ETHEREUM | eff) Unit
+
+foreign import httpProvider :: forall eff. String -> Eff (eth :: ETHEREUM | eff) Provider
+foreign import setProvider :: forall eff. Provider -> Web3 -> Eff (eth :: ETHEREUM | eff) Unit

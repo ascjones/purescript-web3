@@ -3,9 +3,10 @@
 
 // module Web3
 
+const Web3 = require('web3');
+
 exports.createWeb3 = function() {
   return function() {
-    var Web3 = require('web3');
     return new Web3();
   };
 };
@@ -22,10 +23,16 @@ exports.isConnected = function(web3) {
   };
 };
 
-exports.setProvider = function(web3) {
-  return function(provider) {
+exports.httpProvider = function(url) {
+  return function() {
+    return new Web3.providers.HttpProvider(url);
+  };
+};
+
+exports.setProvider = function(provider) {
+  return function(web3) {
     return function() {
-      return web3.setProvider(provider);
+      web3.setProvider(provider);
     };
   };
 };
