@@ -14,7 +14,7 @@ import Test.Unit.Console (TESTOUTPUT)
 -- import EthereumTestRpc (provider)
 
 import Web3 (Web3, createWeb3, httpProvider, setProvider, isConnected, ETHEREUM)
-import Web3.Version (getNode)
+import Web3.Version (getNodeVersion)
 
 -- connection to devnet geth node
 web3DevNet :: forall eff. Eff (eth :: ETHEREUM | eff) Web3
@@ -32,7 +32,7 @@ main = runTest do
     Assert.equal true true
   test "version" do
     web3 <- liftEff $ web3DevNet
-    nodeVersion <- getNode $ web3
+    nodeVersion <- getNodeVersion $ web3
     Assert.equal "Geth/v1.3.6/linux/go1.5.1" nodeVersion
         -- Assert.equal "0.15.3" v.api
         -- Assert.equal "0.15.3" v.node

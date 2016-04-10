@@ -3,7 +3,7 @@
 
 // module Web3.Version
 
-exports._getNode = function(web3) {
+exports._getNodeVersion = function(web3) {
   return function(error) {
     return function(success) {
       return function() {
