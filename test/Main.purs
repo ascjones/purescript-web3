@@ -13,7 +13,9 @@ import Test.Unit.Console (TESTOUTPUT)
 
 -- import EthereumTestRpc (provider)
 
-import Web3 (Web3, createWeb3, httpProvider, setProvider, isConnected, ETHEREUM)
+import Web3 (Web3, createWeb3, setProvider, isConnected)
+import Web3.Providers (httpProvider)
+import Web3.Types (ETHEREUM)
 import Web3.Version (getNodeVersion)
 
 -- connection to devnet geth node

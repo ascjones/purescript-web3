@@ -17,12 +17,6 @@ exports.isConnected = function(web3) {
   };
 };
 
-exports.httpProvider = function(url) {
-  return function() {
-    return new Web3.providers.HttpProvider(url);
-  };
-};
-
 exports.setProvider = function(provider) {
   return function(web3) {
     return function() {
