@@ -11,12 +11,6 @@ exports.createWeb3 = function() {
   };
 };
 
-exports.version = function(web3) {
-  return function() {
-    return web3.version;
-  };
-};
-
 exports.isConnected = function(web3) {
   return function() {
     return web3.isConnected;
