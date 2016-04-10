@@ -17,6 +17,7 @@ import Web3 (Web3, createWeb3, setProvider, isConnected)
 import Web3.Providers (httpProvider)
 import Web3.Types (ETHEREUM)
 import Web3.Version (getNodeVersion)
+import Web3.Eth (getAccounts)
 
 -- connection to devnet geth node
 web3DevNet :: forall eff. Eff (eth :: ETHEREUM | eff) Web3
@@ -41,3 +42,6 @@ main = runTest do
         -- Assert.equal "0.15.3" v.network
         -- Assert.equal "0.15.3" v.ethereum
         -- Assert.equal "0.15.3" v.whisper
+  -- test "getAddresses" do
+  --   web3 <- liftEff $ web3DevNet
+  --   accounts <- liftEff $ web3DevNet >>= getAccounts
