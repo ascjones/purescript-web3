@@ -13,9 +13,9 @@ import Test.Unit.Console (TESTOUTPUT)
 
 -- import EthereumTestRpc (provider)
 
-import Web3 (Web3, createWeb3, setProvider, isConnected)
+import Web3 (createWeb3, setProvider, isConnected)
 import Web3.Providers (httpProvider)
-import Web3.Types (ETHEREUM)
+import Web3.Types (Web3, ETHEREUM, Address(..))
 import Web3.Version (getNodeVersion)
 import Web3.Eth (getAccounts)
 
@@ -42,6 +42,7 @@ main = runTest do
         -- Assert.equal "0.15.3" v.network
         -- Assert.equal "0.15.3" v.ethereum
         -- Assert.equal "0.15.3" v.whisper
-  -- test "getAddresses" do
-  --   web3 <- liftEff $ web3DevNet
-  --   accounts <- liftEff $ web3DevNet >>= getAccounts
+  test "getAddresses" do
+    web3 <- liftEff $ web3DevNet
+    accounts <- getAccounts $ web3
+    Assert.equal [Address "blah"] accounts
