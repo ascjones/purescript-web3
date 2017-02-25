@@ -7,10 +7,9 @@
     "test": "test"
   },
   "dependencies": {
-    "web3": "^0.15.3"
   },
   "devDependencies": {
-    "ethereumjs-testrpc": "^2.0.2"
+    "ethereumjs-testrpc": "^3.0.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
