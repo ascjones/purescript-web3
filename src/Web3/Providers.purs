@@ -1,10 +1,12 @@
 module Web3.Providers where
 
-import Control.Monad.Aff (Aff)
+import Control.Monad.Aff (Aff, makeAff)
 import Control.Monad.Aff.AVar (AVAR)
 import Control.Monad.Eff (Eff)
 
 import Web3.Types (ETHEREUM)
+
+newtype Response = Response String
 
 type Payload =
   { jsonrpc :: String
