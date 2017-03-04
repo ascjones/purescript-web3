@@ -2,8 +2,7 @@ module Web3.Types where
 
 import Data.Generic (class Generic, gEq)
 
-foreign import data ETHEREUM :: !
-foreign import data Web3 :: *
+data ETHEREUM :: !
 
 newtype Address = Address String
 
