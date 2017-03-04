@@ -5,7 +5,7 @@
 
 const provider = require('ethereumjs-testrpc').provider();
 
-exports.sendAsync = function(payload) {
+exports._sendAsync = function(payload) {
   return function (callback) {
     provider.sendAsync(payload, callback);
   };

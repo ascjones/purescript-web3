@@ -1,10 +1,9 @@
 module Web3.Types where
 
-import Data.Generic (class Generic, gEq)
+import Prelude
 
-data ETHEREUM :: !
+foreign import data ETHEREUM :: !
 
 newtype Address = Address String
 
-derive instance genericAddress :: Generic Address
-instance eqAddress :: Eq Address where eq = gEq
+derive newtype instance genericAddress :: Eq Address
