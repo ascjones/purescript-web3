@@ -1,11 +1,18 @@
 module Web3.Eth where
 
 import Prelude
--- import Control.Monad.Eff (Eff)
--- import Control.Monad.Eff.Exception (Error())
--- import Control.Monad.Aff (Aff, makeAff)
---
--- import Web3.Types (ETHEREUM, Web3, Address(..))
+import Control.Monad.Aff (Aff)
+import Control.Monad.Aff.AVar (AVAR)
+import Web3.Types (ETHEREUM, Address)
 
--- getAccounts :: forall e. Web3 -> Aff (eth :: ETHEREUM | e) (Array Address)
--- getAccounts web3 = makeAff (\error success -> _getAccounts web3 error (\addresses -> success $ Address <$> addresses))
+type Method a b = forall e. a -> Aff (eth :: ETHEREUM, avar :: AVAR | e) b
+
+-- type Methods =
+--   { getAccounts : Method Unit (Array Address) }
+
+-- getAccounts
+--   :: forall e
+--    . (SendAsync e (Array Address))
+--   -> Aff (eth :: ETHEREUM, avar :: AVAR | e) (Array Address)
+-- getAccounts sendAsync =
+--   sendAsync "eth_" unit

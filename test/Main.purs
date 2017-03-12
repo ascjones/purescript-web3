@@ -1,27 +1,29 @@
 module Test.Main where
 
-import Prelude (Unit, unit, show, (==), ($), (>>=), bind)
+import Test.Unit.Assert as Assert
+import Control.Monad.Aff (liftEff')
 import Control.Monad.Aff.AVar (AVAR)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
-
-import Data.Either (Either(Right,Left))
-
+import Data.Either (Either(Right, Left))
+import EthereumTestRPC (InitialAccount, Options, TESTRPC, sendAsync, testRPCProvider)
+import Prelude (Unit, bind, pure, show, unit, ($), (==), (>>=))
 import Test.Unit (failure, test)
-import Test.Unit.Main (runTest)
-import Test.Unit.Assert as Assert
 import Test.Unit.Console (TESTOUTPUT)
-
-import Web3.Types (ETHEREUM, Address(..))
+import Test.Unit.Main (runTest)
 import Web3.Eth (getAccounts)
 import Web3.Providers (SendAsync)
-import EthereumTestRPC (testRPCProvider, TESTRPC, Options, InitialAccount)
+import Web3.Types (ETHEREUM, Address(..))
 
 main :: forall eff. Eff (avar :: AVAR, testOutput :: TESTOUTPUT, rpc :: TESTRPC, eth :: ETHEREUM | eff) Unit
 main = runTest do
   test "getAccounts" do
     -- let options =
     --   { accounts : [ { address : Address "address", balance : Balance 1.0 } ] }
-    provider <- testRPCProvider { accounts : [] }
-    accounts <- getAccounts $ web3
-    Assert.equal [] accounts
+    provider <- liftEff' $ testRPCProvider { accounts : [] }
+    case provider of
+      Left err -> pure unit
+      Right p -> do
+        send <- sendAsync p
+        accounts <- getAccounts send
+        Assert.equal "" accounts
