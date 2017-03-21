@@ -3,14 +3,11 @@ module Web3.JsonRpc
   , JsonRpcResponse
   ) where
 
-import Prelude
 import Control.Monad.Aff (Aff)
 import Control.Monad.Aff.AVar (AVAR)
-import DOM.File.FileReader (result)
 import Data.Argonaut.Core (Json, jsonEmptyObject)
-import Data.Argonaut.Decode (class DecodeJson, decodeJson, gDecodeJson)
-import Data.Argonaut.Encode (class EncodeJson, encodeJson, gEncodeJson, (:=), (~>))
-import Data.Either (Either(..))
+import Data.Argonaut.Encode (class EncodeJson, encodeJson, (:=), (~>))
+import Data.Either (Either)
 import Data.Maybe (Maybe)
 
 newtype JsonRpcRequest a =
@@ -29,7 +26,8 @@ instance encodeJsonRpcRequesqt :: EncodeJson a => EncodeJson (JsonRpcRequest a) 
     ~> "params" := req.params
     ~> jsonEmptyObject
 
-newtype JsonRpcResponse a = JsonRpcResponse (Either JsonRpcFailure (JsonRpcSuccess a))
+newtype JsonRpcResponse a =
+  JsonRpcResponse (Either JsonRpcFailure (JsonRpcSuccess a))
 
 -- instance decodeJsonRpcResponse :: DecodeJson JsonRpcResponse where
 --   decodeJson = gDecodeJson
@@ -64,5 +62,5 @@ type SendJsonRpcRequest e = Json -> Aff (avar :: AVAR | e) Json
 --
 --   reqJson = encodeJson req
 
-encode :: forall a. JsonRpcRequest a -> Json
-encode = gEncodeJson
+encode :: forall a. EncodeJson a => JsonRpcRequest a -> Json
+encode = encodeJson
