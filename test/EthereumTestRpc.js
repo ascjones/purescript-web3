@@ -3,7 +3,7 @@
 
 // module EthereumTestRPC
 
-exports.testRPCProvider = function(options) {
+exports.testRpcProvider = function(options) {
   return function() {
     require('ethereumjs-testrpc').provider(options);
   }
